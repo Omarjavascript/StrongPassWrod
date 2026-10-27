@@ -1,42 +1,46 @@
 #include <iostream>
 #include <string>
-#include <vector>
-#include <utility>
-#include <cmath>
+#include <cstdlib>
+
 using namespace std;
 
-
-
-
-string ReadPositiveNumber() {
-	string PinCode ;
-	do{
-		cout << "Plese Enter Your Pin Code: " << endl;
-		cin >> PinCode;
-	} while (PinCode!="1234");
-	return PinCode; 
+string ReadPinCode() {
+    string pinCode;
+    cout << "Please Enter Your PIN Code: " << endl;
+    cin >> pinCode;
+    return pinCode;
 }
 
+bool Login() {
+    string pinCode;
+    int counter = 3;
 
-bool checkThePassowrd() {
-	string PinCode;
-	if (PinCode == "12345") {
-		return 1; 
+    do {
+        pinCode = ReadPinCode();
 
-	}
-	else
-	{
-		return 2; 
-	}
+        if (pinCode == "1234") {
+            return true; // نجاح تسجيل الدخول
+        }
+        else {
+            counter--;
+            system("color 4F"); // شاشة حمراء عند الخطأ
+            cout << "\nWrong PIN! You have " << counter << " more trial(s).\n" << endl;
+        }
+
+    } while (counter > 0); // يستمر فقط طالما لا تزال هناك محاولات
+
+    return false; // استنفد المحاولات
 }
 
+int main() {
+    // استدعاء الدالة مع الأقواس ()
+    if (Login()) {
+        system("color 2F"); // شاشة خضراء عند النجاح
+        cout << "\nYour Balance is: " << 7800 << endl;
+    }
+    else {
+        cout << "\nYour Card is Blocked! Call the bank for help." << endl;
+    }
 
-int main() { 
-	ReadPositiveNumber();
-	if (checkThePassowrd) {
-		system("color 0A"); 
-		cout << "Your Balance is " << 7800 << endl; 
-	}
-
-	return 0;
+    return 0;
 }
