@@ -19,7 +19,7 @@ string ReadPositiveNumber(string massege ) {
 
 
 string checkThePassowrd(string Password) {
-	if (Password == "1234") {
+	if (Password == "12345") {
 		return "Passed"; 
 
 	}
