@@ -8,30 +8,35 @@ using namespace std;
 
 
 
-string ReadPositiveNumber(string massege ) {
-	string PassWord = "";
+string ReadPositiveNumber() {
+	string PinCode ;
 	do{
-		cout << massege << endl;
-		cin >> PassWord;
-	} while (PassWord == "#");
-	return PassWord; 
+		cout << "Plese Enter Your Pin Code: " << endl;
+		cin >> PinCode;
+	} while (PinCode!="1234");
+	return PinCode; 
 }
 
 
-string checkThePassowrd(string Password) {
-	if (Password == "12345") {
-		return "Passed"; 
+bool checkThePassowrd() {
+	string PinCode;
+	if (PinCode == "12345") {
+		return 1; 
 
 	}
 	else
 	{
-		return "Wrong PassWORD"; 
+		return 2; 
 	}
 }
 
 
 int main() { 
-	string EnterPassword = ReadPositiveNumber("Please Enter Your Password: "); 
-	cout << checkThePassowrd(EnterPassword) << endl; 
+	ReadPositiveNumber();
+	if (checkThePassowrd) {
+		system("color 0A"); 
+		cout << "Your Balance is " << 7800 << endl; 
+	}
+
 	return 0;
 }
