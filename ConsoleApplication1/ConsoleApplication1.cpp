@@ -19,15 +19,13 @@ int ReadPossitiveNumbers(string massege) {
 	return Number;
 }
 
-enuPrfictNotPerfictNumber CheackNumber(int Number) {
-	int Sum = 0;
-	for (int i = 1; i <= (Number / 2); i++) {
+enuPrfictNotPerfictNumber CheckNumber(int Number) {
+	int Sum = 0;  
+	for (int i = 1; i <= Number/2; i++) {
 		if (Number % i == 0) {
 			Sum += i;
 		}
-
-
-	}
+		}
 	if (Sum == Number) {
 		return enuPrfictNotPerfictNumber::Perfict;
 	}
@@ -35,18 +33,26 @@ enuPrfictNotPerfictNumber CheackNumber(int Number) {
 	{
 		return enuPrfictNotPerfictNumber::NotPerfict;
 	}
-}
+	} 
 
-void PrintTheResult(int Number) {
-	if (CheackNumber(Number) == enuPrfictNotPerfictNumber::Perfict) {
-		cout << "Pefect Number"; 
+void PrintThePefictNumbers(int Number) {
+
+	for (int i = 1; i <= Number; i++) {
+		if (CheckNumber(i) == enuPrfictNotPerfictNumber::Perfict) {
+			cout << "PE" << i;
+		}
+		else
+		{
+			cout << "NOT" << i;
+		}
 	}
-	else {
-		cout << "Not Perfect Number"; 
+
+
+	
 	}
-}
+
 
 int main() {
-	PrintTheResult(ReadPossitiveNumbers("Please Enter A possitive Number: ")); 
-	return 0;
+	PrintThePefictNumbers(ReadPossitiveNumbers("Please Enter The Possitive Number: ")); 
+	return 0; 
 }
