@@ -5,37 +5,41 @@
 using namespace std;
 
 
+enum enuPrimeNotPrimeNumber {
+	Prime = 1 , 
+	NotPrime = 2 ,
+};
 
-void HeaderTitile() {
-	cout << "\t\t\t\tMultiplcation Table From 1 to 10\n" << endl;
-	for (int i = 1; i <= 10; i++) {
-		cout << "          " << i;
-	}
-	cout << "\n";
-	cout << "----------------------------------------------------------------------------------------------------------------";
-	cout << endl; 
+int ReadPossitiveNumbers(string massege) {
+	int Number; 
+	do {
+		cout << massege; 
+		cin >> Number;
+	} while (Number <= 0);
+	return Number;
 }
-string CoulmsSprator(int i) {
-	if (i < 10) {
-		return " |";
-	}
-	else
-	{
-		return "|"; 
-	}
-}
-
-void PrintMultiplcationTable() {
-	for (int i = 1; i <= 10; i++) {
-		cout << " " << i << CoulmsSprator(i)<< "\t"; //made couluns ; 
-		for (int j = 1; j <= 10; j++) {
-			cout <<  j * i << "\t";
+enuPrimeNotPrimeNumber CheckNumber(int Number) {
+	int M = round(Number / 2); 
+	for (int counter = 2; counter <= M; counter++) {
+		if (Number % counter == 0) {
+			return enuPrimeNotPrimeNumber::NotPrime;
 		}
-		cout << endl;
+		return enuPrimeNotPrimeNumber::Prime;
 	}
 }
+
+void PrintPrimeNumbers(int Numbers) {
+	cout << "\n";
+	cout << "The Prime Numbers from 1 To " << Numbers << " Are" << endl; 
+	for (int i = 1; i <= Numbers; i++) {
+		if (CheckNumber(i) == enuPrimeNotPrimeNumber::Prime) {
+			cout << i << endl;
+		}
+	}
+}
+
+
 int main() {
-	HeaderTitile(); 
-	PrintMultiplcationTable(); 
-	return 0; 
+	PrintPrimeNumbers(ReadPossitiveNumbers("Please Enter Possitive Number: ")); 
+	return 0;
 }
