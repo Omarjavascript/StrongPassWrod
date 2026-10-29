@@ -5,9 +5,9 @@
 using namespace std;
 
 
-enum enuPrimeNotPrimeNumber {
-	Prime = 1 , 
-	NotPrime = 2 ,
+enum enuPrfictNotPerfictNumber {
+	Perfict = 1 , 
+	NotPerfict = 2 ,
 };
 
 int ReadPossitiveNumbers(string massege) {
@@ -18,28 +18,35 @@ int ReadPossitiveNumbers(string massege) {
 	} while (Number <= 0);
 	return Number;
 }
-enuPrimeNotPrimeNumber CheckNumber(int Number) {
-	int M = round(Number / 2); 
-	for (int counter = 2; counter <= M; counter++) {
-		if (Number % counter == 0) {
-			return enuPrimeNotPrimeNumber::NotPrime;
+
+enuPrfictNotPerfictNumber CheackNumber(int Number) {
+	int Sum = 0;
+	for (int i = 1; i <= (Number / 2); i++) {
+		if (Number % i == 0) {
+			Sum += i;
 		}
-		return enuPrimeNotPrimeNumber::Prime;
+
+
+	}
+	if (Sum == Number) {
+		return enuPrfictNotPerfictNumber::Perfict;
+	}
+	else
+	{
+		return enuPrfictNotPerfictNumber::NotPerfict;
 	}
 }
 
-void PrintPrimeNumbers(int Numbers) {
-	cout << "\n";
-	cout << "The Prime Numbers from 1 To " << Numbers << " Are" << endl; 
-	for (int i = 1; i <= Numbers; i++) {
-		if (CheckNumber(i) == enuPrimeNotPrimeNumber::Prime) {
-			cout << i << endl;
-		}
+void PrintTheResult(int Number) {
+	if (CheackNumber(Number) == enuPrfictNotPerfictNumber::Perfict) {
+		cout << "Pefect Number"; 
+	}
+	else {
+		cout << "Not Perfect Number"; 
 	}
 }
-
 
 int main() {
-	PrintPrimeNumbers(ReadPossitiveNumbers("Please Enter Possitive Number: ")); 
+	PrintTheResult(ReadPossitiveNumbers("Please Enter A possitive Number: ")); 
 	return 0;
 }
